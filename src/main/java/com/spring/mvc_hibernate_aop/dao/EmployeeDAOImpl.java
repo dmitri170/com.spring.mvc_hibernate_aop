@@ -15,7 +15,6 @@ public class EmployeeDAOImpl implements EmployeeDAO{
     @Autowired
     private SessionFactory sessionFactory;
     @Override
-    @Transactional
     public List<Employee> getAllEmployees() {
         try {
             Session session = sessionFactory.getCurrentSession();
@@ -28,6 +27,12 @@ public class EmployeeDAOImpl implements EmployeeDAO{
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public void saveEmployee(Employee employee) {
+        Session session=sessionFactory.getCurrentSession();
+        session.save(employee);
     }
 
 }
